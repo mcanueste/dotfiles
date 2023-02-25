@@ -1,0 +1,10 @@
+---
+dotfiles_url: https://github.com/mcanueste/dotfiles.git
+dotfiles_dir: "{{ ansible_env.HOME }}/.dotfiles"
+cargo_dir: "{{ ansible_env.HOME }}/.cargo"
+config_dir: "{{ ansible_env.HOME }}/.config"
+nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
+nvim_ppa: "ppa:neovim-ppa/unstable"
+
+nvim_dependencies:
+  - software-properties-common

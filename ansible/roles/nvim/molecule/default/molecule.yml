@@ -1,0 +1,18 @@
+---
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: mcanueste/python:ubuntu22
+    pre_build_image: true
+    network: host
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

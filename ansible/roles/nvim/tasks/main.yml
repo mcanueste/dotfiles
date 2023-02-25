@@ -1,0 +1,52 @@
+---
+- name: Check if dotfiles repository exists
+  ansible.builtin.git:
+    repo: "{{ dotfiles_url }}"
+    dest: "{{ dotfiles_dir }}"
+    single_branch: yes
+    version: main
+    clone: no
+    update: no
+
+- name: Check if {{ nvim_dir }} exists
+  ansible.builtin.stat:
+    path: "{{ nvim_dir }}"
+  register: rc
+
+- name: Rename existing {{ nvim_dir }} directory
+  ansible.builtin.command: mv -f {{ nvim_dir }} {{ nvim_dir }}.bak
+  when: 
+    - rc.stat.exists
+    - rc.stat.islnk is defined and not rc.stat.islnk
+
+- name: Create {{ config_dir }}
+  ansible.builtin.file:
+    path: "{{ config_dir }}"
+    state: directory
+    mode: 0755
+    recurse: yes
+  when: 
+    - not rc.stat.exists
+
+- name: Create {{ nvim_dir }} symbolic link
+  ansible.builtin.file:
+    src: "{{ dotfiles_dir }}/configs/nvim"
+    dest: "{{ nvim_dir }}"
+    state: link
+    mode: 0755
+  when: 
+    - (not rc.stat.exists) or (rc.stat.islnk is defined and not rc.stat.islnk)
+
+- name: Install nvim dependencies
+  ansible.builtin.apt:
+    name: "{{ nvim_dependencies }}"
+    state: present
+
+- name: Add nvim ppa
+  ansible.builtin.apt_repository:
+    repo: "{{ nvim_ppa }}"
+
+- name: Install nvim
+  ansible.builtin.apt:
+    name: "neovim"
+    state: present

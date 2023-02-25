@@ -1,0 +1,39 @@
+---
+- name: Verify nvim role
+  hosts: all
+  tasks:
+    - name: Install verification dependencies
+      apt:
+        name: python3-apt
+        state: present
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Gather the package facts
+      ansible.builtin.package_facts:
+        manager: auto
+
+    - name: Include default vars
+      ansible.builtin.include_vars:
+        dir: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/defaults/"
+        extensions:
+          - 'yml'
+
+    - name: Stat {{ nvim_dir }}
+      ansible.builtin.stat:
+        path: "{{ nvim_dir }}"
+      register: rc
+
+    - name: Check if {{ nvim_dir }} link exists
+      ansible.builtin.assert:
+        that:
+          - rc.stat.islnk is defined
+          - rc.stat.islnk
+        success_msg: "{{ nvim_dir }} link exists"
+        fail_msg: "{{ nvim_dir }} link does not exist"
+
+    - name: Check if nvim is installed
+      ansible.builtin.assert:
+        that:
+          - "'neovim' in ansible_facts.packages"
+        fail_msg: "neovim is not installed!"
+        success_msg: "neovim is installed!"
