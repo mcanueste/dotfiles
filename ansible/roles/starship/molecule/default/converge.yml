@@ -1,0 +1,7 @@
+---
+- name: Converge starship role
+  hosts: all
+  tasks:
+    - name: "Include 'starship' role"
+      include_role:
+        name: "starship"

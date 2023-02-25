@@ -57,3 +57,6 @@
     - name: Include nvim role
       include_role:
         name: "nvim"
+    
+    # TODO: ssh
+    # TODO: wireguard
