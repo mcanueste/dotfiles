@@ -1,5 +1,6 @@
 ---
-appimage_dir: "{{ ansible_env.HOME }}/.local/appimage"
+user_home: "/home/mcst"
+appimage_dir: "{{ user_home }}/.local/appimage"
 
 appimage_dependencies:
   - ca-certificates

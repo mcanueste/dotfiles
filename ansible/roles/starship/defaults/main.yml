@@ -1,10 +1,11 @@
 ---
+user_home: "/home/mcst"
 dotfiles_url: https://github.com/mcanueste/dotfiles.git
-dotfiles_dir: "{{ ansible_env.HOME }}/.dotfiles"
-cargo_dir: "{{ ansible_env.HOME }}/.cargo"
-config_dir: "{{ ansible_env.HOME }}/.config"
-starship_path: "{{ ansible_env.HOME }}/.cargo/bin/starship"
-starship_dir: "{{ ansible_env.HOME }}/.config/starship"
+dotfiles_dir: "{{ user_home }}/.dotfiles"
+cargo_dir: "{{ user_home }}/.cargo"
+config_dir: "{{ user_home }}/.config"
+starship_path: "{{ user_home }}/.cargo/bin/starship"
+starship_dir: "{{ user_home }}/.config/starship"
 
 starship_dependencies:
   - ca-certificates

@@ -1,3 +1,4 @@
 ---
+user_home: "/home/mcst"
 dotfiles_url: https://github.com/mcanueste/dotfiles.git
-dotfiles_dir: "{{ ansible_env.HOME }}/.dotfiles"
+dotfiles_dir: "{{ user_home }}/.dotfiles"

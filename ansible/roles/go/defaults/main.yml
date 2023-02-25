@@ -1,5 +1,6 @@
 ---
-gopath: "{{ ansible_env.HOME }}/.go"
+user_home: "/home/mcst"
+gopath: "{{ user_home }}/.go"
 
 go_dependencies:
   - ca-certificates

@@ -7,21 +7,21 @@
     clone: no
     update: no
 
-- name: Check if {{ ansible_env.HOME }}/.bashrc exists
+- name: Check if {{ user_home }}/.bashrc exists
   ansible.builtin.stat:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: "{{ user_home }}/.bashrc"
   register: rc
 
-- name: Rename existing {{ ansible_env.HOME }}/.bashrc file 
-  ansible.builtin.command: mv {{ ansible_env.HOME }}/.bashrc {{ ansible_env.HOME }}/.bashrc.bak
+- name: Rename existing {{ user_home }}/.bashrc file 
+  ansible.builtin.command: mv {{ user_home }}/.bashrc {{ user_home }}/.bashrc.bak
   when: 
     - rc.stat.exists
     - rc.stat.islnk is defined and not rc.stat.islnk
 
-- name: Create {{ ansible_env.HOME }}/.bashrc symbolic link
+- name: Create {{ user_home }}/.bashrc symbolic link
   ansible.builtin.file:
     src: "{{ dotfiles_dir }}/configs/bash/bashrc"
-    dest: "{{ ansible_env.HOME }}/.bashrc"
+    dest: "{{ user_home }}/.bashrc"
     state: link
     mode: 0755
   when: 

@@ -1,5 +1,6 @@
 ---
-cargo_dir: "{{ ansible_env.HOME }}/.cargo"
+user_home: "/home/mcst"
+cargo_dir: "{{ user_home }}/.cargo"
 
 rust_dependencies:
   - ca-certificates

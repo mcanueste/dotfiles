@@ -1,10 +1,11 @@
 ---
+user_home: "/home/mcst"
 dotfiles_url: https://github.com/mcanueste/dotfiles.git
-dotfiles_dir: "{{ ansible_env.HOME }}/.dotfiles"
-cargo_dir: "{{ ansible_env.HOME }}/.cargo"
-config_dir: "{{ ansible_env.HOME }}/.config"
-alacritty_path: "{{ ansible_env.HOME }}/.cargo/bin/alacritty"
-alacritty_dir: "{{ ansible_env.HOME }}/.config/alacritty"
+dotfiles_dir: "{{ user_home }}/.dotfiles"
+cargo_dir: "{{ user_home }}/.cargo"
+config_dir: "{{ user_home }}/.config"
+alacritty_path: "{{ user_home }}/.cargo/bin/alacritty"
+alacritty_dir: "{{ user_home }}/.config/alacritty"
 
 alacritty_dependencies:
   - ca-certificates
