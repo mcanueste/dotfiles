@@ -5,12 +5,12 @@
     - name: Stat ~/.bashrc
       ansible.builtin.stat:
         path: ~/.bashrc
-      register: links
+      register: rc
 
     - name: Check if ~/.bashrc link exists
       ansible.builtin.assert:
         that:
-          - links.stat.islnk is defined
-          - links.stat.islnk
+          - rc.stat.islnk is defined
+          - rc.stat.islnk
         success_msg: "~/.bashrc link exists"
         fail_msg: "~/.bashrc link does not exist"

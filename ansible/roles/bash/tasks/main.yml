@@ -1,7 +1,40 @@
 ---
-- name: Create a symbolic link
+- name: Install git
+  ansible.builtin.apt:
+    state: present
+    name:
+      - git
+
+- name: Check if {{ dotfiles_dir }} exists
+  ansible.builtin.stat:
+    path: "{{ dotfiles_dir }}"
+  register: repo
+
+- name: Clone dotfiles repository
+  ansible.builtin.git:
+    repo: "{{ dotfiles_url }}"
+    dest: "{{ dotfiles_dir }}"
+    version: main
+    single_branch: true
+  when: 
+    - not repo.stat.exists
+
+- name: Check if {{ ansible_env.HOME }}/.bashrc exists
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+  register: rc
+
+- name: Rename existing {{ ansible_env.HOME }}/.bashrc file 
+  ansible.builtin.command: mv {{ ansible_env.HOME }}/.bashrc {{ ansible_env.HOME }}/.bashrc.bak
+  when: 
+    - rc.stat.exists
+    - rc.stat.islnk is defined and not rc.stat.islnk
+
+- name: Create {{ ansible_env.HOME }}/.bashrc symbolic link
   ansible.builtin.file:
     src: "{{ dotfiles_dir }}/configs/bash/bashrc"
-    dest: ~/.bashrc
+    dest: "{{ ansible_env.HOME }}/.bashrc"
     state: link
     mode: 0755
+  when: 
+    - rc.stat.islnk is defined and not rc.stat.islnk
