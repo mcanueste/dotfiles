@@ -6,15 +6,9 @@ config_dir: "{{ ansible_env.HOME }}/.config"
 starship_path: "{{ ansible_env.HOME }}/.cargo/bin/starship"
 starship_dir: "{{ ansible_env.HOME }}/.config/starship"
 
-# starship_dependencies:
-#   - ca-certificates
-#   - build-essential
-#   - fontconfig
-#   - curl
-#   - cmake 
-#   - pkg-config
-#   - libfreetype6-dev
-#   - libfontconfig1-dev
-#   - libxcb-xfixes0-dev
-#   - libxkbcommon-dev
-#   - python3
+starship_dependencies:
+  - ca-certificates
+  - build-essential
+  - pkg-config
+  - curl
+  - cmake 

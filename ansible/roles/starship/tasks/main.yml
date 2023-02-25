@@ -50,10 +50,10 @@
     success_msg: "cargo is installed!"
     fail_msg: "cargo is not installed!"
 
-# - name: Install starship dependencies
-#   ansible.builtin.package:
-#     name: "{{ starship_dependencies }}"
-#     state: present
+- name: Install starship dependencies
+  ansible.builtin.package:
+    name: "{{ starship_dependencies }}"
+    state: present
 
 - name: Install starship with cargo
   ansible.builtin.shell: . {{ cargo_dir }}/env && cargo install --locked starship
