@@ -118,11 +118,16 @@ fi
 . "$HOME/.cargo/env"
 
 export EDITOR="nvim"
-PATH="$HOME/.local/bin:$HOME/.local/appimage:$PATH"
+export GOPATH=$HOME/.go
+export PATH=$GOPATH/bin:$HOME/.local/bin:$HOME/.local/appimage:$PATH
 
 if [ -f "$HOME/.asdf/asdf.sh" ] ; then 
   . $HOME/.asdf/asdf.sh
   . $HOME/.asdf/completions/asdf.bash
+fi
+
+if [ -f "$HOME/.cargo/env" ] ; then 
+  . $HOME/.cargo/env
 fi
 
 if [[ -f /usr/bin/fzf ]]; then

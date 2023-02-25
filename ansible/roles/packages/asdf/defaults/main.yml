@@ -11,60 +11,6 @@ asdf_plugins:
   # See the link below for plugin index
   # https://github.com/asdf-vm/asdf-plugins
 
-  # TODO change to rust build
-  # bottom:
-  #   url: ""
-  #   global: latest
-  #   versions:
-  #     - latest
-  #   dependencies:
-  #     - bash
-  #     - curl 
-  #     - tar
-
-  # TODO change to rust build
-  # hyperfine:
-  #   url: ""
-  #   global: latest
-  #   versions:
-  #     - latest
-  #   dependencies:
-  #     - bash
-  #     - curl 
-  #     - tar
-
-  # TODO change to rust build
-  # hurl:
-  #   url: ""
-  #   global: latest
-  #   versions:
-  #     - latest
-  #   dependencies:
-  #     - bash
-  #     - curl 
-  #     - tar
-
-  # TODO change to rust build
-  # just:
-  #   url: ""
-  #   global: latest
-  #   versions:
-  #     - latest
-  #   dependencies:
-  #     - bash
-  #     - curl 
-  #     - tar
-  #     - gzip
-
-  # rust:
-  #   url: ""
-  #   global: stable
-  #   versions:
-  #     - stable 
-  #   dependencies:
-  #     - curl
-  #     - coreutils
-
   nodejs:
     url: ""
     global: latest

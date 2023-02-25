@@ -1,0 +1,16 @@
+---
+- name: Install rust package - {{ package }}
+  ansible.builtin.shell: . {{ cargo_dir }}/env && cargo install --locked {{ package }}
+  args:
+    executable: /bin/bash
+  register: ret
+  changed_when: 
+    - ret.rc == 0
+    - "'Ignored' not in ret.stderr"
+  failed_when:
+    - ret.rc != 0
+
+- name: "DEBUG: Rust package install - {{ package }}"
+  ansible.builtin.debug: var=ret
+  when:
+    - ret.rc != 0

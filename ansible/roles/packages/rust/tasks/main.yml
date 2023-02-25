@@ -1,0 +1,36 @@
+---
+- name: Install dependencies
+  ansible.builtin.package:
+    name: "{{ rust_dependencies }}"
+    state: present
+
+- name: Install rustup
+  block:
+    - name: Fetch rustup installer
+      ansible.builtin.uri:
+        url: https://sh.rustup.rs
+        return_content: yes
+      register: rustup_installer
+
+    - name: Run rustup installer
+      ansible.builtin.command: sh -s -- -y --no-modify-path 
+      args:
+        stdin: "{{ rustup_installer.content }}"
+      register: ret
+      changed_when: 
+        - ret.rc == 0
+        - "'Rust is installed now' is in ret.stdout"
+        - "'info: installing component' is in ret.stderr"
+      failed_when:
+        - ret.rc != 0
+    
+    - name: "DEBUG: Rustup install"
+      ansible.builtin.debug: var=ret
+      when:
+        - ret.rc != 0
+
+- name: Install rust packages
+  include_tasks: "install_packages.yml"
+  loop: "{{ rust_packages }}"
+  loop_control:
+    loop_var: package

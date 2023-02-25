@@ -1,0 +1,7 @@
+---
+- name: Converge rust role
+  hosts: all
+  tasks:
+    - name: "Include 'rust' role"
+      include_role:
+        name: "rust"
