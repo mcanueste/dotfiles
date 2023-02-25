@@ -1,0 +1,7 @@
+---
+- name: Converge dotfiles role
+  hosts: all
+  tasks:
+    - name: "Include 'dotfiles' role"
+      include_role:
+        name: "dotfiles"

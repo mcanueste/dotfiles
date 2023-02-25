@@ -1,23 +1,12 @@
 ---
-- name: Install git
-  ansible.builtin.apt:
-    state: present
-    name:
-      - git
-
-- name: Check if {{ dotfiles_dir }} exists
-  ansible.builtin.stat:
-    path: "{{ dotfiles_dir }}"
-  register: repo
-
-- name: Clone dotfiles repository
+- name: Check if dotfiles repository exists
   ansible.builtin.git:
     repo: "{{ dotfiles_url }}"
     dest: "{{ dotfiles_dir }}"
+    single_branch: yes
     version: main
-    single_branch: true
-  when: 
-    - not repo.stat.exists
+    clone: no
+    update: no
 
 - name: Check if {{ ansible_env.HOME }}/.bashrc exists
   ansible.builtin.stat:
