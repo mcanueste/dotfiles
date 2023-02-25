@@ -9,7 +9,6 @@
     repo: "{{ asdf_url }}"
     dest: "{{ asdf_dest }}"
     version: "{{ asdf_branch }}"
-    single_branch: yes
 
 - name: Setup plugins
   include_tasks: "setup_plugins.yml"
