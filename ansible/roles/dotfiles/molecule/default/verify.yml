@@ -12,7 +12,6 @@
       ansible.builtin.git:
         repo: "{{ dotfiles_url }}"
         dest: "{{ dotfiles_dir }}"
-        single_branch: yes
         version: main
         clone: no
         update: no

@@ -13,6 +13,5 @@
         repo: "{{ asdf_url }}"
         dest: "{{ asdf_dest }}"
         version: "{{ asdf_branch }}"
-        single_branch: yes
         clone: no
         update: no

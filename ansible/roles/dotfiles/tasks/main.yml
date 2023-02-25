@@ -15,6 +15,5 @@
     repo: "{{ dotfiles_url }}"
     dest: "{{ dotfiles_dir }}"
     version: main
-    single_branch: true
   when: 
     - not repo.stat.exists
