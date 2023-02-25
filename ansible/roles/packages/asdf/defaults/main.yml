@@ -1,6 +1,6 @@
 ---
 asdf_url: https://github.com/asdf-vm/asdf.git 
-asdf_dest: ~/.local/asdf 
+asdf_dest: ~/.asdf 
 asdf_branch: v0.11.1
 
 asdf_dependencies:
@@ -12,109 +12,69 @@ asdf_plugins:
   # https://github.com/asdf-vm/asdf-plugins
 
   # TODO change to rust build
-  bottom:
-    url: ""
-    global: latest
-    versions:
-      - latest
-    dependencies:
-      - bash
-      - curl 
-      - tar
+  # bottom:
+  #   url: ""
+  #   global: latest
+  #   versions:
+  #     - latest
+  #   dependencies:
+  #     - bash
+  #     - curl 
+  #     - tar
 
   # TODO change to rust build
-  hyperfine:
-    url: ""
-    global: latest
-    versions:
-      - latest
-    dependencies:
-      - bash
-      - curl 
-      - tar
+  # hyperfine:
+  #   url: ""
+  #   global: latest
+  #   versions:
+  #     - latest
+  #   dependencies:
+  #     - bash
+  #     - curl 
+  #     - tar
 
   # TODO change to rust build
-  hurl:
-    url: ""
-    global: latest
-    versions:
-      - latest
-    dependencies:
-      - bash
-      - curl 
-      - tar
+  # hurl:
+  #   url: ""
+  #   global: latest
+  #   versions:
+  #     - latest
+  #   dependencies:
+  #     - bash
+  #     - curl 
+  #     - tar
+
+  # TODO change to rust build
+  # just:
+  #   url: ""
+  #   global: latest
+  #   versions:
+  #     - latest
+  #   dependencies:
+  #     - bash
+  #     - curl 
+  #     - tar
+  #     - gzip
 
   # TODO change to go build
-  glow:
-    url: ""
-    global: latest
-    versions:
-      - latest
-    dependencies:
-      - bash
-      - curl 
-      - tar
+  # lazygit:
+  #   url: ""
+  #   global: latest
+  #   versions:
+  #     - latest
+  #   dependencies:
+  #     - bash
+  #     - curl 
+  #     - tar
 
-  # TODO change to rust build
-  just:
-    url: ""
-    global: latest
-    versions:
-      - latest
-    dependencies:
-      - bash
-      - curl 
-      - tar
-      - gzip
-
-  # TODO change to go build
-  lazygit:
-    url: ""
-    global: latest
-    versions:
-      - latest
-    dependencies:
-      - bash
-      - curl 
-      - tar
-
-  kubectl:
-    url: ""
-    global: latest
-    versions:
-      - latest
-    dependencies:
-      - bash
-      - curl 
-      - tar
-
-  kafkactl:
-    url: ""
-    global: latest
-    versions:
-      - latest
-    dependencies:
-      - bash
-      - curl 
-      - tar
-
-  rust:
-    url: ""
-    global: stable
-    versions:
-      - stable 
-    dependencies:
-      - curl
-      - coreutils
-
-  golang:
-    url: ""
-    global: latest
-    versions:
-      - latest
-    dependencies:
-      - curl
-      - coreutils
+  # rust:
+  #   url: ""
+  #   global: stable
+  #   versions:
+  #     - stable 
+  #   dependencies:
+  #     - curl
+  #     - coreutils
 
   nodejs:
     url: ""
