@@ -1,7 +1,6 @@
 ---
-- name: Converge
+- name: Converge ppa role
   hosts: all
-
   tasks:
     - name: "Include 'ppa' role"
       include_role:

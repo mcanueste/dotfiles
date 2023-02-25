@@ -1,7 +1,6 @@
 ---
-- name: Converge
+- name: Converge apt role
   hosts: all
-
   tasks:
     - name: "Include 'apt' role"
       include_role:

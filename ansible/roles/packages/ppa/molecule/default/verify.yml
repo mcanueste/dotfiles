@@ -1,7 +1,6 @@
 ---
-- name: Verify
+- name: Verify ppa role
   hosts: all
-
   tasks:
     - name: Install verification dependencies
       apt:
