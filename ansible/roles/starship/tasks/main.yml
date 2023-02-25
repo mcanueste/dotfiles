@@ -70,10 +70,3 @@
   ansible.builtin.debug: var=ret
   when:
     - ret.rc != 0
-
-- name: Update terminal alternative to starship
-  community.general.alternatives:
-    name: x-terminal-emulator
-    link: /usr/bin/x-terminal-emulator
-    path: "{{ starship_path }}"
-    state: auto
