@@ -1,0 +1,7 @@
+---
+- name: Converge bash role
+  hosts: all
+  tasks:
+    - name: "Include 'bash' role"
+      include_role:
+        name: "bash"

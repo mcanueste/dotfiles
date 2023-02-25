@@ -1,0 +1,16 @@
+---
+- name: "Install version - {{ version }}"
+  ansible.builtin.shell: ". {{ asdf_dest }}/asdf.sh && asdf install {{ plugin.key }} {{ version }}"
+  args:
+    executable: /bin/bash
+  register: ret
+  changed_when: 
+    - ret.rc == 0
+    - '"already installed" not in ret.stdout'
+  failed_when:
+    - ret.rc != 0
+
+- name: "DEBUG: Version install - {{ version }}"
+  ansible.builtin.debug: var=ret
+  when:
+    - ret.rc != 0

@@ -1,0 +1,22 @@
+---
+- name: Clone dotfiles repository to simulate fresh installation
+  hosts: all
+  tasks:
+    - name: Install apt dependencies
+      ansible.builtin.apt:
+        state: present
+        name:
+          - git
+
+    - name: Include default vars
+      ansible.builtin.include_vars:
+        dir: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/defaults/"
+        extensions:
+          - 'yml'
+
+    - name: Clone dotfiles repository
+      ansible.builtin.git:
+        repo: "{{ dotfiles_url }}"
+        dest: "{{ dotfiles_dir }}"
+        version: main
+        single_branch: yes

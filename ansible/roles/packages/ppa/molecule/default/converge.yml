@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+
+  tasks:
+    - name: "Include 'ppa' role"
+      include_role:
+        name: "ppa"

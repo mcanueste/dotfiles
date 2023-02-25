@@ -1,0 +1,7 @@
+---
+- name: Create a symbolic link
+  ansible.builtin.file:
+    src: "{{ dotfiles_dir }}/configs/bash/bashrc"
+    dest: ~/.bashrc
+    state: link
+    mode: 0755

@@ -1,0 +1,7 @@
+---
+ppa_dependencies:
+  - software-properties-common
+
+ppa_packages:
+  # Editor
+  neovim: "ppa:neovim-ppa/unstable"

@@ -1,0 +1,167 @@
+# Commands that should be applied only for interactive shells.
+[[ $- == *i* ]] || return
+
+### SET VI MODE ###
+# Comment this line out to enable default emacs-like bindings
+# set -o vi
+# bind -m vi-command 'Control-l: clear-screen'
+# bind -m vi-insert 'Control-l: clear-screen'
+
+export HISTCONTROL=erasedups:ignoredups:ignorespace
+export HISTFILESIZE=100000
+export HISTIGNORE='exit:ls:bg:fg:history:clear'
+export HISTSIZE=100000
+export HISTTIMEFORMAT="%F %T "
+export PROMPT_COMMAND="history -a"
+export PROMPT_DIRTRIM="2"
+
+shopt -s histappend
+shopt -s cmdhist
+shopt -s checkwinsize
+shopt -s extglob
+shopt -s globstar
+shopt -s nocaseglob
+shopt -s checkjobs
+shopt -s autocd
+shopt -s dirspell
+shopt -s cdspell
+shopt -s dotglob
+# shopt -s expand_aliases
+
+# Prevent file overwrite on stdout redirection
+# Use >| to force redirection to an existing file
+set -o noclobber
+
+# Enable history expansion with space
+# E.g. typing !!<space> will replace the !! with your last command
+bind Space:magic-space
+
+## SMARTER TAB-COMPLETION (Readline bindings) ##
+
+# Perform file completion in a case insensitive fashion
+bind "set completion-ignore-case on"
+
+# Treat hyphens and underscores as equivalent
+bind "set completion-map-case on"
+
+# Display matches for ambiguous patterns at first tab press
+bind "set show-all-if-ambiguous on"
+
+# Immediately add a trailing slash when autocompleting symlinks to directories
+bind "set mark-symlinked-directories on"
+
+# Enable incremental history search with up/down arrows (also Readline goodness)
+# Learn more about this here:
+# http://codeinthehole.com/writing/the-most-important-command-line-tip-incremental-history-searching-with-inputrc/
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind '"\e[C": forward-char'
+bind '"\e[D": backward-char'
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# adding flags
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+
+# get error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
+
+# ps
+alias psa="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias psmem='ps auxf | sort -nr -k 4'
+alias pscpu='ps auxf | sort -nr -k 3'
+
+alias g='git'
+alias vim="nvim"
+alias v='vim'
+alias fd="fdfind"
+
+if [[ -f /usr/bin/batcat ]]; then
+  alias bat="batcat"
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+else
+  export MANPAGER="nvim -c 'set ft=man' -"
+fi
+
+# If exa is installed
+if [[ -f /usr/bin/exa ]]; then
+  alias la='/usr/bin/exa -a'
+  alias ll='/usr/bin/exa -l'
+  alias lla='/usr/bin/exa -la'
+  alias ls='/usr/bin/exa'
+  alias lt='/usr/bin/exa --tree'
+fi
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# enable programmable completion features
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+if [[ ! -v BASH_COMPLETION_VERSINFO ]]; then
+  . "/etc/profile.d/bash_completion.sh"
+fi
+
+. "$HOME/.cargo/env"
+
+export EDITOR="nvim"
+PATH="$HOME/.local/bin:$HOME/.local/appimage:$PATH"
+
+if [ -f "$HOME/.asdf/asdf.sh" ] ; then 
+  . $HOME/.asdf/asdf.sh
+  . $HOME/.asdf/completions/asdf.bash
+fi
+
+if [[ -f /usr/bin/fzf ]]; then
+  export FZF_TMUX="1"
+  . /usr/share/doc/fzf/examples/key-bindings.bash
+fi
+
+if [ -f "/usr/bin/zoxide" ] ; then 
+  eval "$(zoxide init bash)"
+fi
+
+# TODO
+eval "$(starship init bash)"
+
+#### Functions
+# ARCHIVE EXTRACTION
+# usage: ex <file>
+ex ()
+{
+  if [ -f "$1" ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+

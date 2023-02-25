@@ -1,0 +1,19 @@
+---
+apt_packages:
+  - ca-certificates
+  - software-properties-common
+  - fuse
+  - libfuse2
+  - git
+  - rsync
+  - htop
+  - ncdu
+  - ripgrep
+  - fd-find
+  - bat
+  - exa
+  - fzf
+  - zoxide
+  - shellcheck
+  - bash-completion
+

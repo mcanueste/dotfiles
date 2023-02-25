@@ -1,0 +1,18 @@
+---
+- name: Verify asdf role
+  hosts: all
+  tasks:
+    - name: Include default vars
+      ansible.builtin.include_vars:
+        dir: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/defaults/"
+        extensions:
+          - 'yml'
+
+    - name: Check if asdf repository is cloned
+      ansible.builtin.git:
+        repo: "{{ asdf_url }}"
+        dest: "{{ asdf_dest }}"
+        version: "{{ asdf_branch }}"
+        single_branch: yes
+        clone: no
+        update: no

@@ -1,0 +1,18 @@
+---
+- name: Install dependencies
+  ansible.builtin.apt:
+    name: "{{ ppa_dependencies }}"
+    state: present
+
+- name: Install PPA Packages 
+  block:
+    - name: Add PPA's
+      ansible.builtin.apt_repository:
+        repo: "{{ item.value }}"
+      loop: "{{ ppa_packages | dict2items }}"
+
+    - name: Install packages
+      ansible.builtin.apt:
+        name: "{{ item.key }}"
+        state: present
+      loop: "{{ ppa_packages | dict2items }}"

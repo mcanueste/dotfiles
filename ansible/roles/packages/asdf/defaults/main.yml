@@ -1,0 +1,155 @@
+---
+asdf_url: https://github.com/asdf-vm/asdf.git 
+asdf_dest: ~/.local/asdf 
+asdf_branch: v0.11.1
+
+asdf_dependencies:
+  - curl
+  - git
+
+asdf_plugins:
+  # See the link below for plugin index
+  # https://github.com/asdf-vm/asdf-plugins
+
+  # TODO change to rust build
+  bottom:
+    url: ""
+    global: latest
+    versions:
+      - latest
+    dependencies:
+      - bash
+      - curl 
+      - tar
+
+  # TODO change to rust build
+  hyperfine:
+    url: ""
+    global: latest
+    versions:
+      - latest
+    dependencies:
+      - bash
+      - curl 
+      - tar
+
+  # TODO change to rust build
+  hurl:
+    url: ""
+    global: latest
+    versions:
+      - latest
+    dependencies:
+      - bash
+      - curl 
+      - tar
+
+  # TODO change to go build
+  glow:
+    url: ""
+    global: latest
+    versions:
+      - latest
+    dependencies:
+      - bash
+      - curl 
+      - tar
+
+  # TODO change to rust build
+  just:
+    url: ""
+    global: latest
+    versions:
+      - latest
+    dependencies:
+      - bash
+      - curl 
+      - tar
+      - gzip
+
+  # TODO change to go build
+  lazygit:
+    url: ""
+    global: latest
+    versions:
+      - latest
+    dependencies:
+      - bash
+      - curl 
+      - tar
+
+  kubectl:
+    url: ""
+    global: latest
+    versions:
+      - latest
+    dependencies:
+      - bash
+      - curl 
+      - tar
+
+  kafkactl:
+    url: ""
+    global: latest
+    versions:
+      - latest
+    dependencies:
+      - bash
+      - curl 
+      - tar
+
+  rust:
+    url: ""
+    global: stable
+    versions:
+      - stable 
+    dependencies:
+      - curl
+      - coreutils
+
+  golang:
+    url: ""
+    global: latest
+    versions:
+      - latest
+    dependencies:
+      - curl
+      - coreutils
+
+  nodejs:
+    url: ""
+    global: latest
+    versions:
+      - latest
+    dependencies:
+      - dirmngr
+      - gpg
+      - curl
+      - gawk
+
+  python:
+    url: ""
+    global: 3.10.4
+    versions:
+      - 3.10.4 
+    dependencies:
+      - curl
+      - build-essential 
+      - libssl-dev 
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libxml2-dev
+      - libxmlsec1-dev
+      - libffi-dev
+      - liblzma-dev
+
+  poetry:
+    url: ""
+    global: latest
+    versions:
+      - latest

@@ -1,0 +1,18 @@
+---
+- name: Install dependencies
+  ansible.builtin.package:
+    name: "{{ asdf_dependencies }}"
+    state: present
+
+- name: Clone asdf repository
+  ansible.builtin.git:
+    repo: "{{ asdf_url }}"
+    dest: "{{ asdf_dest }}"
+    version: "{{ asdf_branch }}"
+    single_branch: yes
+
+- name: Setup plugins
+  include_tasks: "setup_plugins.yml"
+  loop: "{{ asdf_plugins | dict2items }}"
+  loop_control:
+    loop_var: plugin

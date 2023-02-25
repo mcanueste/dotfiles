@@ -1,0 +1,42 @@
+---
+- name: "Install plugin dependencies - {{ plugin.key }}"
+  when: plugin.value.dependencies is defined
+  ansible.builtin.package:
+    name: "{{ plugin.value.dependencies }}"
+    state: present
+
+- name: "Install plugin - {{ plugin.key }}"
+  ansible.builtin.shell: ". {{ asdf_dest }}/asdf.sh && asdf plugin add {{ plugin.key }} {{ plugin.value.url }}"
+  args:
+    executable: /bin/bash
+  register: ret
+  changed_when: ret.rc == 0
+  failed_when:
+    - ret.rc != 0
+    - '"already added" not in ret.stderr'
+
+- name: "DEBUG: Plugin install - {{ plugin.key }}"
+  ansible.builtin.debug: var=ret
+  when:
+    - ret.rc != 0
+    - '"already added" not in ret.stderr'
+
+- name: "Install plugin versions - {{ plugin.key }}"
+  include_tasks: "install_versions.yml"
+  loop: "{{ plugin.value.versions }}"
+  loop_control:
+    loop_var: version
+
+- name: "Set global version - {{ plugin.key }} {{ plugin.value.global }}"
+  ansible.builtin.shell: ". {{ asdf_dest }}/asdf.sh && asdf global {{ plugin.key }} {{ plugin.value.global }}"
+  args:
+    executable: /bin/bash
+  register: ret
+  changed_when: False
+  failed_when:
+    - ret.rc != 0
+
+- name: "DEBUG: Set global version - {{ plugin.key }} {{ plugin.value.global }}"
+  ansible.builtin.debug: var=ret
+  when:
+    - ret.rc != 0

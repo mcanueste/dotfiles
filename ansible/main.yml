@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars_files:
+    - vars/test.yml
+
+  tasks:
+    - name: Echo the test var
+      shell: echo $TEST_VAR
+      environment:
+        TEST_VAR: "{{ test_var }}"
+      register: echo_result
+
+    - name: Show the result
+      debug: var=echo_result.stdout
