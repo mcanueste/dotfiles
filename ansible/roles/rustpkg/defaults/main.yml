@@ -14,6 +14,5 @@ rust_dependencies:
 
 rust_packages:
   - bottom
-  - hyperfine
   - hurl
   - just
