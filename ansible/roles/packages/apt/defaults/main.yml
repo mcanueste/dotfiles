@@ -2,8 +2,6 @@
 apt_packages:
   - ca-certificates
   - software-properties-common
-  - fuse
-  - libfuse2
   - git
   - rsync
   - htop

@@ -56,17 +56,6 @@ asdf_plugins:
   #     - tar
   #     - gzip
 
-  # TODO change to go build
-  # lazygit:
-  #   url: ""
-  #   global: latest
-  #   versions:
-  #     - latest
-  #   dependencies:
-  #     - bash
-  #     - curl 
-  #     - tar
-
   # rust:
   #   url: ""
   #   global: stable

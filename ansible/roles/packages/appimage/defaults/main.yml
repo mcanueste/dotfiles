@@ -1,0 +1,11 @@
+---
+appimage_dir: "{{ ansible_env.HOME }}/.local/appimage"
+
+appimage_dependencies:
+  - ca-certificates
+  - curl
+  - fuse
+  - libfuse2
+
+appimage_packages:
+  obsidian: "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.1.9/Obsidian-1.1.9.AppImage"

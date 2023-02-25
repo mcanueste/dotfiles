@@ -1,0 +1,19 @@
+---
+- name: Install AppImage dependencies
+  ansible.builtin.apt:
+    name: "{{ appimage_dependencies }}"
+    state: present
+
+- name: Create {{ appimage_dir }} directory
+  ansible.builtin.file:
+    path: "{{ appimage_dir }}"
+    state: directory
+    mode: 0755
+    recurse: true
+
+- name: Download AppImage packages
+  ansible.builtin.get_url:
+    url: "{{ item.value }}"
+    dest: "{{ appimage_dir }}/{{ item.key }}"
+    mode: 0755
+  loop: "{{ appimage_packages | dict2items }}"

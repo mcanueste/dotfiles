@@ -1,0 +1,21 @@
+---
+- name: Verify appimage role
+  hosts: all
+  tasks:
+    - name: Include default vars
+      ansible.builtin.include_vars:
+        dir: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/defaults/"
+        extensions:
+          - 'yml'
+
+    - name: Register installed AppImage packages
+      shell: "ls -1 {{ appimage_dir }}"
+      register: installed_app_image_packages
+
+    - name: Check if AppImage packages are installed
+      ansible.builtin.assert:
+        that:
+          - "'{{ item.key }}' in {{ installed_app_image_packages.stdout_lines }}"
+        fail_msg: "{{ item.key }} is not installed!"
+        success_msg: "{{ item.key }} is installed!"
+      loop: "{{ appimage_packages | dict2items }}"

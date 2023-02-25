@@ -1,0 +1,7 @@
+---
+- name: Converge appimage role
+  hosts: all
+  tasks:
+    - name: "Include 'appimage' role"
+      include_role:
+        name: "appimage"
