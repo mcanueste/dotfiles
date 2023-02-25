@@ -1,5 +1,6 @@
 ---
 - name: Install dependencies
+  become: true
   ansible.builtin.package:
     name: "{{ rust_dependencies }}"
     state: present

@@ -1,5 +1,6 @@
 ---
 - name: Install AppImage dependencies
+  become: true
   ansible.builtin.apt:
     name: "{{ appimage_dependencies }}"
     state: present

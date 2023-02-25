@@ -1,5 +1,6 @@
 ---
 - name: "Install plugin dependencies - {{ plugin.key }}"
+  become: true
   when: plugin.value.dependencies is defined
   ansible.builtin.package:
     name: "{{ plugin.value.dependencies }}"

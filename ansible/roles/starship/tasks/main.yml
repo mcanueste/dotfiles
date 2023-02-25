@@ -50,6 +50,7 @@
     fail_msg: "cargo is not installed!"
 
 - name: Install starship dependencies
+  become: true
   ansible.builtin.package:
     name: "{{ starship_dependencies }}"
     state: present

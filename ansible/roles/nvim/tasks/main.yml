@@ -37,15 +37,18 @@
     - (not rc.stat.exists) or (rc.stat.islnk is defined and not rc.stat.islnk)
 
 - name: Install nvim dependencies
+  become: true
   ansible.builtin.apt:
     name: "{{ nvim_dependencies }}"
     state: present
 
 - name: Add nvim ppa
+  become: true
   ansible.builtin.apt_repository:
     repo: "{{ nvim_ppa }}"
 
 - name: Install nvim
+  become: true
   ansible.builtin.apt:
     name: "neovim"
     state: present

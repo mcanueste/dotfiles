@@ -1,5 +1,6 @@
 ---
 - name: Install aptrepo dependencies
+  become: true
   ansible.builtin.package:
     name: "{{ aptrepo_dependencies }}"
     state: present
@@ -18,6 +19,7 @@
   loop: "{{ aptrepo_packages  | dict2items }}"
 
 - name: Install packages from apt repositories
+  become: true
   ansible.builtin.apt:
     name: "{{ item.key }}"
     state: present

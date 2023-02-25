@@ -50,6 +50,7 @@
     fail_msg: "cargo is not installed!"
 
 - name: Install alacritty dependencies
+  become: true
   ansible.builtin.package:
     name: "{{ alacritty_dependencies }}"
     state: present
@@ -71,6 +72,7 @@
     - ret.rc != 0
 
 - name: Update terminal alternative to Alacritty
+  become: true
   community.general.alternatives:
     name: x-terminal-emulator
     link: /usr/bin/x-terminal-emulator
