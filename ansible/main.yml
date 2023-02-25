@@ -26,9 +26,9 @@
       include_role:
         name: "aptrepo"
 
-    - name: Include ppa role
-      include_role:
-        name: "ppa"
+    # - name: Include ppa role
+    #   include_role:
+    #     name: "ppa"
 
     - name: Include appimage role
       include_role:
