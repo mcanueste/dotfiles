@@ -1,0 +1,22 @@
+---
+- name: Verify rust role
+  hosts: all
+  tasks:
+    - name: Include default vars
+      ansible.builtin.include_vars:
+        dir: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/defaults/"
+        extensions:
+          - 'yml'
+
+    - name: Stat cargo directory
+      stat:
+        path: "{{ cargo_dir }}"
+      register: cargo
+
+    - name: Check if cargo is installed
+      ansible.builtin.assert:
+        that:
+          - cargo.stat.exists
+          - cargo.stat.isdir
+        success_msg: "cargo is installed!"
+        fail_msg: "cargo is not installed!"

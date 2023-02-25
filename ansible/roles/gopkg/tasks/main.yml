@@ -1,0 +1,6 @@
+---
+- name: Install go packages
+  include_tasks: "install_packages.yml"
+  loop: "{{ go_packages | dict2items }}"
+  loop_control:
+    loop_var: package

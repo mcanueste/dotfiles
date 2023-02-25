@@ -1,0 +1,12 @@
+---
+- name: Install dependencies
+  ansible.builtin.package:
+    name: "{{ go_dependencies }}"
+    state: present
+
+- name: Install go
+  environment:
+    GOPATH: "{{ gopath }}"
+  ansible.builtin.apt:
+    name: golang-go
+    state: present

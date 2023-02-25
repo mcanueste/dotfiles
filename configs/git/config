@@ -1,9 +1,0 @@
-[user]
-name = mcanueste
-email = mcanueste@gmail.com
-
-[includeIf "gitdir:~/TUM/"]
-    path = ./tumconfig
-
-[includeIf "gitdir:~/Thesis/"]
-    path = ./tumconfig

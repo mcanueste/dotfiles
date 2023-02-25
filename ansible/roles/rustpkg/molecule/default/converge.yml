@@ -1,0 +1,7 @@
+---
+- name: Converge rustpkg role
+  hosts: all
+  tasks:
+    - name: "Include 'rustpkg' role"
+      include_role:
+        name: "rustpkg"

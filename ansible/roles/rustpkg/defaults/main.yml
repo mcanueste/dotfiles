@@ -1,0 +1,19 @@
+---
+cargo_dir: "{{ ansible_env.HOME }}/.cargo"
+
+rust_dependencies:
+  - ca-certificates
+  - build-essential
+  - curl
+  - cmake 
+  - pkg-config
+  - openssl
+  - libssl-dev
+  - libcurl4-openssl-dev
+  - libxml2-dev
+
+rust_packages:
+  - bottom
+  - hyperfine
+  - hurl
+  - just

@@ -1,0 +1,24 @@
+---
+- name: Install aptrepo dependencies
+  ansible.builtin.package:
+    name: "{{ aptrepo_dependencies }}"
+    state: present
+
+- name: Add GPG keys for apt repositories
+  ansible.builtin.get_url:
+    url: "{{ item.value.gpg.url }}"
+    dest: "{{ item.value.gpg.dest }}"
+    mode: 0755
+  loop: "{{ aptrepo_packages | dict2items }}"
+
+- name: Add apt repositories to index
+  ansible.builtin.apt_repository:
+    repo: "{{ item.value.repository }}"
+    state: present
+  loop: "{{ aptrepo_packages  | dict2items }}"
+
+- name: Install packages from apt repositories
+  ansible.builtin.apt:
+    name: "{{ item.key }}"
+    state: present
+  loop: "{{ aptrepo_packages | dict2items }}"

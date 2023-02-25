@@ -1,0 +1,15 @@
+---
+- name: Verify gopkg role
+  hosts: all
+  tasks:
+    - name: Register installed go packages
+      shell: "ls -1 ~/.go/bin"
+      register: installed_go_packages
+
+    - name: Check if go packages are installed
+      ansible.builtin.assert:
+        that:
+          - "'{{ item.key }}' in {{ installed_go_packages.stdout_lines }}"
+        fail_msg: "{{ item.key }} is not installed!"
+        success_msg: "{{ item.key }} is installed!"
+      loop: "{{ go_packages | dict2items }}"

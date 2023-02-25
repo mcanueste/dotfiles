@@ -1,0 +1,6 @@
+---
+- name: Install rust packages
+  include_tasks: "install_packages.yml"
+  loop: "{{ rust_packages }}"
+  loop_control:
+    loop_var: package

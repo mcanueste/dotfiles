@@ -1,0 +1,7 @@
+---
+- name: Converge go role
+  hosts: all
+  tasks:
+    - name: "Include 'go' role"
+      include_role:
+        name: "go"

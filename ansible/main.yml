@@ -1,17 +1,59 @@
 ---
 - hosts: localhost
   connection: local
-  gather_facts: no
-
-  vars_files:
-    - vars/test.yml
-
   tasks:
-    - name: Echo the test var
-      shell: echo $TEST_VAR
-      environment:
-        TEST_VAR: "{{ test_var }}"
-      register: echo_result
+    - name: Include dotfiles role
+      include_role:
+        name: "dotfiles"
 
-    - name: Show the result
-      debug: var=echo_result.stdout
+    - name: Include asdf role
+      include_role:
+        name: "asdf"
+
+    - name: Include go role
+      include_role:
+        name: "go"
+
+    - name: Include rust role
+      include_role:
+        name: "rust"
+
+    - name: Include apt role
+      include_role:
+        name: "apt"
+
+    - name: Include aptrepo role
+      include_role:
+        name: "aptrepo"
+
+    - name: Include ppa role
+      include_role:
+        name: "ppa"
+
+    - name: Include appimage role
+      include_role:
+        name: "appimage"
+
+    - name: Include gopkg role
+      include_role:
+        name: "gopkg"
+
+    - name: Include rustpkg role
+      include_role:
+        name: "rustpkg"
+
+    - name: Include bash
+      include_role:
+        name: "bash"
+
+    - name: Include starship role
+      include_role:
+        name: "starship"
+
+    - name: Include alacritty role
+      include_role:
+        name: "alacritty"
+
+    - name: Include nvim role
+      include_role:
+        name: "nvim"

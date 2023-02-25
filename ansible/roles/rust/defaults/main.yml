@@ -1,0 +1,6 @@
+---
+cargo_dir: "{{ ansible_env.HOME }}/.cargo"
+
+rust_dependencies:
+  - ca-certificates
+  - curl

@@ -1,0 +1,16 @@
+---
+- name: Verify rustpkg role
+  hosts: all
+  tasks:
+    - name: Register installed rust packages
+      shell: "ls -1 {{ cargo_dir }}/bin"
+      register: installed_rust_packages
+    
+    - name: Check if rust packages are installed
+      loop: "{{ rust_packages }}"
+      ansible.builtin.assert:
+        that: >
+          ("'{{ item }}' in {{ installed_rust_packages.stdout_lines }}") or
+          ("'{{ item | replace('o','') }}' in {{ installed_rust_packages.stdout_lines }}")
+        fail_msg: "{{ item }} is not installed!"
+        success_msg: "{{ item }} is installed!"

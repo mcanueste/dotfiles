@@ -1,0 +1,7 @@
+---
+- name: Converge alacritty role
+  hosts: all
+  tasks:
+    - name: "Include 'alacritty' role"
+      include_role:
+        name: "alacritty"

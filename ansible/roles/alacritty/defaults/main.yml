@@ -1,0 +1,20 @@
+---
+dotfiles_url: https://github.com/mcanueste/dotfiles.git
+dotfiles_dir: "{{ ansible_env.HOME }}/.dotfiles"
+cargo_dir: "{{ ansible_env.HOME }}/.cargo"
+config_dir: "{{ ansible_env.HOME }}/.config"
+alacritty_path: "{{ ansible_env.HOME }}/.cargo/bin/alacritty"
+alacritty_dir: "{{ ansible_env.HOME }}/.config/alacritty"
+
+alacritty_dependencies:
+  - ca-certificates
+  - build-essential
+  - fontconfig
+  - curl
+  - cmake 
+  - pkg-config
+  - libfreetype6-dev
+  - libfontconfig1-dev
+  - libxcb-xfixes0-dev
+  - libxkbcommon-dev
+  - python3

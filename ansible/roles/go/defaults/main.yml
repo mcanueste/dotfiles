@@ -1,0 +1,5 @@
+---
+gopath: "{{ ansible_env.HOME }}/.go"
+
+go_dependencies:
+  - ca-certificates

@@ -1,0 +1,7 @@
+---
+- name: Converge gopkg role
+  hosts: all
+  tasks:
+    - name: "Include 'gopkg' role"
+      include_role:
+        name: "gopkg"

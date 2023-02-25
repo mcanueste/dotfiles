@@ -1,0 +1,79 @@
+---
+- name: Check if dotfiles repository exists
+  ansible.builtin.git:
+    repo: "{{ dotfiles_url }}"
+    dest: "{{ dotfiles_dir }}"
+    single_branch: yes
+    version: main
+    clone: no
+    update: no
+
+- name: Check if {{ alacritty_dir }} exists
+  ansible.builtin.stat:
+    path: "{{ alacritty_dir }}"
+  register: rc
+
+- name: Rename existing {{ alacritty_dir }} directory
+  ansible.builtin.command: mv -f {{ alacritty_dir }} {{ alacritty_dir }}.bak
+  when: 
+    - rc.stat.exists
+    - rc.stat.islnk is defined and not rc.stat.islnk
+
+- name: Create {{ config_dir }}
+  ansible.builtin.file:
+    path: "{{ config_dir }}"
+    state: directory
+    mode: 0755
+    recurse: yes
+  when: 
+    - not rc.stat.exists
+
+- name: Create {{ alacritty_dir }} symbolic link
+  ansible.builtin.file:
+    src: "{{ dotfiles_dir }}/configs/alacritty"
+    dest: "{{ alacritty_dir }}"
+    state: link
+    mode: 0755
+  when: 
+    - (not rc.stat.exists) or (rc.stat.islnk is defined and not rc.stat.islnk)
+
+- name: Stat cargo directory
+  ansible.builtin.stat:
+    path: "{{ cargo_dir }}"
+  register: cargo
+
+- name: Check if cargo is installed
+  ansible.builtin.assert:
+    that:
+      - cargo.stat.exists
+      - cargo.stat.isdir
+    success_msg: "cargo is installed!"
+    fail_msg: "cargo is not installed!"
+
+- name: Install alacritty dependencies
+  ansible.builtin.package:
+    name: "{{ alacritty_dependencies }}"
+    state: present
+
+- name: Install alacritty with cargo
+  ansible.builtin.shell: . {{ cargo_dir }}/env && cargo install --locked alacritty
+  args:
+    executable: /bin/bash
+  register: ret
+  changed_when: 
+    - ret.rc == 0
+    - "'Ignored' not in ret.stderr"
+  failed_when:
+    - ret.rc != 0
+
+- name: "DEBUG: Alacritty install"
+  ansible.builtin.debug: var=ret
+  when:
+    - ret.rc != 0
+
+- name: Update terminal alternative to Alacritty
+  community.general.alternatives:
+    name: x-terminal-emulator
+    link: /usr/bin/x-terminal-emulator
+    path: "{{ alacritty_path }}"
+    state: auto
