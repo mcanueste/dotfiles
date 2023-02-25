@@ -1,0 +1,18 @@
+---
+gopath: "{{ ansible_env.HOME }}/.go"
+
+go_dependencies:
+  - ca-certificates
+
+go_packages:
+  kafkactl:
+    url: github.com/deviceinsight/kafkactl
+    version: latest
+
+  lazygit: 
+    url: github.com/jesseduffield/lazygit
+    version: latest
+
+  glow: 
+    url: github.com/charmbracelet/glow
+    version: latest

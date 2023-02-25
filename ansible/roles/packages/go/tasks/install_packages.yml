@@ -1,0 +1,16 @@
+---
+- name: Install go package - {{ package.key }} {{ package.value.version }}
+  environment:
+    GOPATH: "{{ gopath }}"
+  ansible.builtin.command: go install {{ package.value.url }}@{{ package.value.version }}
+  register: ret
+  changed_when: 
+    - ret.rc == 0
+    - ret.stdout != ""
+  failed_when:
+    - ret.rc != 0
+
+- name: "DEBUG: Go package install - {{ package.key }} {{ package.value.version }}"
+  ansible.builtin.debug: var=ret
+  when:
+    - ret.rc != 0
