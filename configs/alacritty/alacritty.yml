@@ -99,10 +99,10 @@ font:
 
   normal:
     # family: monospace
-    family: SauceCodePro Nerd Font Mono
+    # family: SourceCodePro Nerd Font Mono
     # family: JetBrainsMonoNL Nerd Font Mono
     # family: Hack Nerd Font Mono
-    # family: FiraCode Nerd Font Mono
+    family: FiraCode Nerd Font Mono
     # family: Source Code Pro
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
@@ -116,7 +116,8 @@ font:
 
   bold:
     # family: monospace
-    family: SauceCodePro Nerd Font Mono
+    # family: SourceCodePro Nerd Font Mono
+    family: FiraCode Nerd Font Mono
     # family: Source Code Pro
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
@@ -130,7 +131,8 @@ font:
 
   italic:
     # family: monospace
-    family: SauceCodePro Nerd Font Mono
+    # family: SourceCodePro Nerd Font Mono
+    family: FiraCode Nerd Font Mono
     # family: Source Code Pro
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
@@ -144,7 +146,8 @@ font:
 
   bold_italic:
     # family: monospace
-    family: SauceCodePro Nerd Font Mono
+    # family: SourceCodePro Nerd Font Mono
+    family: FiraCode Nerd Font Mono
     # family: Source Code Pro
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
