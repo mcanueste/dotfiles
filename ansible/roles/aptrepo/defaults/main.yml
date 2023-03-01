@@ -2,6 +2,7 @@
 aptrepo_dependencies:
   - ca-certificates
   - curl
+  - xdg-desktop-portal-gnome
 
 aptrepo_packages:
   brave-browser: 
