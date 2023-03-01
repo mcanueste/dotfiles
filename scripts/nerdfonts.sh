@@ -3,22 +3,11 @@
 # From: https://gist.github.com/matthewjberger/7dd7e079f282f8138a9dc3b045ebefa0
 
 declare -a fonts=(
-    BitstreamVeraSansMono
-    CodeNewRoman
-    DroidSansMono
     FiraCode
     FiraMono
-    Go-Mono
     Hack
-    Hermit
     JetBrainsMono
-    Meslo
-    Noto
-    Overpass
-    ProggyClean
-    RobotoMono
     SourceCodePro
-    SpaceMono
     Ubuntu
     UbuntuMono
 )
@@ -35,7 +24,7 @@ for font in "${fonts[@]}"; do
     download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/${zip_file}"
     echo "Downloading $download_url"
     wget "$download_url"
-    unzip "$zip_file" -d "$fonts_dir"
+    unzip "$zip_file" -d -o "$fonts_dir"
     rm "$zip_file"
 done
 

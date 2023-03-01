@@ -6,6 +6,7 @@
     state: present
 
 - name: Add GPG keys for apt repositories
+  become: true
   ansible.builtin.get_url:
     url: "{{ item.value.gpg.url }}"
     dest: "{{ item.value.gpg.dest }}"
@@ -13,6 +14,7 @@
   loop: "{{ aptrepo_packages | dict2items }}"
 
 - name: Add apt repositories to index
+  become: true
   ansible.builtin.apt_repository:
     repo: "{{ item.value.repository }}"
     state: present
