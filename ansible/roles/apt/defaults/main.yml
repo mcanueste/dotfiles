@@ -4,6 +4,9 @@ apt_packages:
   - software-properties-common
   - git
   - rsync
+  - xclip
+  - xsel
+  - wl-clipboard
   - htop
   - ncdu
   - ripgrep
@@ -15,4 +18,5 @@ apt_packages:
   - shellcheck
   - bash-completion
   - hyperfine
+  - solaar
   - telegram-desktop
