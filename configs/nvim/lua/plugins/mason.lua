@@ -6,47 +6,68 @@ return {
   },
   opts = {
     ensure_installed = {
-      -- lsp
-      "ansible-language-server",
+      -- sh/bash
+      -- "shfmt",
+      "beautysh",
+      "shellharden",
+      "shellcheck",
       "bash-language-server",
-      "docker-compose-language-service",
-      "dockerfile-language-server",
-      "gopls",
+
+      -- json
       "json-lsp",
-      "lua-language-server",
-      "pyright",
-      "rnix-lsp",
-      "rust-analyzer",
+
+      -- sql
+      "sql-formatter",
       "sqls",
+
+      -- toml
       "taplo",
-      "terraform-ls",
-      "typescript-language-server",
+
+      -- yaml
+      "yamlfmt",
+      "yamllint",
       "yaml-language-server",
 
-      -- format
-      "shellharden",
-      "shfmt",
-      "yamlfmt",
-      "sql-formatter",
-      "stylua",
-      "rustfmt",
-      "black",
-      "isort",
+      -- docker
+      -- "hadolint", -- TODO
+      "docker-compose-language-service",
+      "dockerfile-language-server",
 
-      -- lint
-      "yamllint",
+      -- ansible
       "ansible-lint",
-      "luacheck",
-      "pydocstyle",
-      "flake8",
-      "pyproject-flake8",
-      "pylint",
+      "ansible-language-server",
+
+      -- terraform
+      "terraform-ls",
+
+      -- lua
+      "stylua",
+      "lua-language-server",
+
+      -- js
+      "typescript-language-server",
+
+      -- go
+      "gofumpt",
+      "goimports",
+      "golines",
+      "golangci-lint",
+      "gopls",
+
+      -- rust
+      "rustfmt",
+      "rust-analyzer",
+
+      -- python
+      "ruff",
+      "ruff-lsp",
+      "pyright",
       "mypy",
 
-      -- code action
+      -- nix
+      "rnix-lsp",
 
-      -- lint / codeaction
-      "shellcheck",
+      -- spelling
       "cspell",
     },
   },

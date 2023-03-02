@@ -4,30 +4,45 @@ return {
     local nls = require("null-ls")
     return {
       sources = {
-        -- Format
+        -- sh/bash
+        -- nls.builtins.formatting.shfmt,
+        nls.builtins.formatting.beautysh,
         nls.builtins.formatting.shellharden,
-        nls.builtins.formatting.shfmt,
-        nls.builtins.formatting.yamlfmt,
-        nls.builtins.formatting.sql_formatter,
-        nls.builtins.formatting.stylua,
-        nls.builtins.formatting.rustfmt,
-        nls.builtins.formatting.black,
-        nls.builtins.formatting.isort,
-
-        -- Diagnostics
         nls.builtins.diagnostics.shellcheck,
-        nls.builtins.diagnostics.ansiblelint,
+        nls.builtins.code_actions.shellcheck,
+
+        -- sql
+        -- nls.builtins.formatting.sql_formatter,
+
+        -- yaml
+        nls.builtins.formatting.yamlfmt,
         nls.builtins.diagnostics.yamllint,
-        -- nls.builtins.diagnostics.cspell,
+
+        -- docker
+        -- nls.builtins.diagnostics.hadolint, -- TODO
+
+        -- ansible
+        nls.builtins.diagnostics.ansiblelint,
+
+        -- lua
+        -- nls.builtins.formatting.stylua,
         -- nls.builtins.diagnostics.luacheck,
-        nls.builtins.diagnostics.pydocstyle,
-        nls.builtins.diagnostics.flake8,
-        nls.builtins.diagnostics.pyproject_flake8,
-        nls.builtins.diagnostics.pylint,
+
+        -- go
+        nls.builtins.formatting.gofumpt,
+        nls.builtins.formatting.goimports,
+        nls.builtins.formatting.golines,
+        nls.builtins.diagnostics.golangci_lint,
+
+        -- rust
+        -- nls.builtins.formatting.rustfmt,
+
+        -- python
+        nls.builtins.formatting.ruff,
         nls.builtins.diagnostics.mypy,
 
-        -- Code action
-        nls.builtins.code_actions.shellcheck,
+        -- spelling
+        -- nls.builtins.diagnostics.cspell,
         -- nls.builtins.code_actions.cspell,
       },
     }

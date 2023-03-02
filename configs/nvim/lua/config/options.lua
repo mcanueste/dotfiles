@@ -12,6 +12,7 @@ opt.breakindent = true -- Indent wrapped lines to match line start
 opt.linebreak = true -- Wrap long lines at 'breakat' (if 'wrap' is set)
 opt.rnu = true -- Use relative numbers
 opt.winblend = 10 -- Make floating windows slightly transparent
+opt.scrolloff = 8
 
 -- Editing
 opt.incsearch = true -- Show search results while typing
