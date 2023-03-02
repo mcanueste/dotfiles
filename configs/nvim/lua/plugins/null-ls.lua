@@ -8,7 +8,7 @@ return {
         -- nls.builtins.formatting.shfmt,
         nls.builtins.formatting.beautysh,
         nls.builtins.formatting.shellharden,
-        nls.builtins.diagnostics.shellcheck,
+        -- nls.builtins.diagnostics.shellcheck, -- bashls shows the same diagnostics
         nls.builtins.code_actions.shellcheck,
 
         -- sql
