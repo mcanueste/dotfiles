@@ -1,0 +1,7 @@
+---
+- name: Converge aptrepo role
+  hosts: all
+  tasks:
+    - name: "Include 'aptrepo' role"
+      include_role:
+        name: "aptrepo"

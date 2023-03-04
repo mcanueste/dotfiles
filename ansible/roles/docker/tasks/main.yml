@@ -1,0 +1,37 @@
+---
+- name: Install docker dependencies
+  become: true
+  ansible.builtin.package:
+    name: "{{ docker_dependencies }}"
+    state: present
+
+- name: Add GPG keys for docker repository
+  become: true
+  ansible.builtin.get_url:
+    url: "{{ docker_gpg.url }}"
+    dest: "{{ docker_gpg.dest }}"
+    mode: 0755
+
+- name: Add docker repository to index
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "{{ docker_repository }}"
+    state: present
+
+- name: Install docker packages
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ docker_packages }}"
+
+- name: Create docker group
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Add user to docker group
+  ansible.builtin.user:
+    name: "{{ lookup('env', 'USER') }}"
+    groups: docker
+    append: true
