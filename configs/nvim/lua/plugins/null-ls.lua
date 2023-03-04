@@ -37,6 +37,7 @@ return {
         nls.builtins.formatting.rustfmt,
 
         -- python
+        nls.builtins.formatting.black,
         nls.builtins.formatting.ruff,
         nls.builtins.diagnostics.mypy,
 

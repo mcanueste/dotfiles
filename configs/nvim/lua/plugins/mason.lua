@@ -60,6 +60,7 @@ return {
       "rust-analyzer",
 
       -- python
+      "black",
       "ruff",
       "ruff-lsp",
       "pyright",
