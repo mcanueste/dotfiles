@@ -8,7 +8,7 @@ return {
         -- nls.builtins.formatting.shfmt,
         nls.builtins.formatting.beautysh,
         nls.builtins.formatting.shellharden,
-        -- nls.builtins.diagnostics.shellcheck, -- bashls shows the same diagnostics
+        -- nls.builtins.diagnostics.shellcheck, -- bashls
         nls.builtins.code_actions.shellcheck,
 
         -- sql
@@ -25,8 +25,7 @@ return {
         nls.builtins.diagnostics.ansiblelint,
 
         -- lua
-        -- nls.builtins.formatting.stylua,
-        -- nls.builtins.diagnostics.luacheck,
+        nls.builtins.formatting.stylua,
 
         -- go
         nls.builtins.formatting.gofumpt,
@@ -35,15 +34,22 @@ return {
         nls.builtins.diagnostics.golangci_lint,
 
         -- rust
-        -- nls.builtins.formatting.rustfmt,
+        nls.builtins.formatting.rustfmt,
 
         -- python
         nls.builtins.formatting.ruff,
         nls.builtins.diagnostics.mypy,
 
         -- spelling
+        -- nls.builtins.formatting.codespell,
+        -- nls.builtins.diagnostics.codespell,
+        -- nls.builtins.diagnostics.misspell,
         -- nls.builtins.diagnostics.cspell,
         -- nls.builtins.code_actions.cspell,
+
+        -- markdown
+        nls.builtins.formatting.cbfmt,
+        nls.builtins.diagnostics.vale,
       },
     }
   end,

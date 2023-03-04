@@ -47,6 +47,7 @@ return {
       -- js
       "typescript-language-server",
 
+
       -- go
       "gofumpt",
       "goimports",
@@ -68,7 +69,14 @@ return {
       "rnix-lsp",
 
       -- spelling
-      "cspell",
+      -- "cspell",
+      -- "codespell",
+      -- "misspell",
+
+      -- markdown
+      "cbfmt",
+      "vale",
+      "marksman",
     },
   },
 }
