@@ -47,7 +47,6 @@ return {
       -- js
       "typescript-language-server",
 
-
       -- go
       "gofumpt",
       "goimports",

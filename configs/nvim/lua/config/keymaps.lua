@@ -96,12 +96,6 @@ map("n", "<leader><tab>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader>ll", "<cmd>lopen<cr>", { desc = "Location List" })
 map("n", "<leader>lq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 
--- TODO: ???
--- Add undo break-points
--- map("i", ",", ",<c-g>u")
--- map("i", ".", ".<c-g>u")
--- map("i", ";", ";<c-g>u")
-
 -- Paste/Delete selected text without changing the register
 map("v", "gp", [["_dP]], { desc = "Paste without saving to register" })
 map("v", "gd", [["_d]], { desc = "Delete without saving to register" })
